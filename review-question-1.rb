@@ -1,5 +1,29 @@
 ## QUESTION 1
 
+pokemon[0][:abilities][0][:ability][:url]
+
+pokemon.find do |pokemon_hash|
+  if pokemon_hash[:base_experience] > 40
+    pokemon_hash[:name]
+  end
+end
+
+pokemon.collect do |pokemon_hash|
+  if pokemon_hash[:base_experience] > 40
+    pokemon_hash
+  end
+end
+
+pokemon.collect do |pokemon_hash|
+  pokemon_hash[:name]
+end
+
+pokemon.any? do |pokemon_hash|
+  pokemon_hash[:weight] > 60
+end
+
+
+
 pokemon = [
   {
     "id": 1,

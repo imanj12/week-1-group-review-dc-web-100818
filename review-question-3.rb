@@ -1,6 +1,55 @@
 # begin to build a simple program that models Instagram
 # you should have a User class, a Photo class and a comment class
 
+class User
+  def initialize(name)
+    @name = name
+  end
+
+  attr_accessor :name
+
+  def photos
+    Photo.all.select {|photo| photo.user == self}
+  end
+
+end
+
+class Photo
+  @@all = []
+  def initialize
+    @user = user
+    self.class.all << self
+  end
+
+  attr_accessor :name, :user
+
+  def self.all
+    @@all
+  end
+
+  def comments
+    Comment.all.select {|comment| comment.photo == self}
+  end
+
+  def make_comment(message)
+    Comment.new(message, self)
+  end
+end
+
+class Comment
+  def initialize(message, photo)
+    @photo = photo
+    @message = message
+    self.class.all << self
+  end
+
+  @@all = []
+  def self.all
+    @@all
+  end
+
+  attr_accessor :user, :photo, :message
+end
 
 sandwich_photo = Photo.new
 sophie = User.new("Sophie")
